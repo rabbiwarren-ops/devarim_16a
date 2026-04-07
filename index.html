@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דברים פרק טו – יחידה לימודית</title>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F5EDD6;
+    --parchment: #EDE0C4;
+    --deep-brown: #3B2007;
+    --warm-brown: #7A4419;
+    --gold: #C8922A;
+    --gold-light: #E8B84B;
+    --sage: #5B7A5A;
+    --sage-light: #8BAF89;
+    --sky: #3A6E8A;
+    --sky-light: #6EA8C5;
+    --terra: #A84C2A;
+    --cream: #FAF6EE;
+    --correct: #4CAF50;
+    --wrong: #E53935;
+    --neutral: #9E9E9E;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--sand);
+    color: var(--deep-brown);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 10% 10%, rgba(200,146,42,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(91,122,90,0.1) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8922a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, var(--deep-brown) 0%, var(--warm-brown) 60%, var(--gold) 100%);
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(59,32,7,0.3);
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M40 0L0 40 40 80 80 40z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
+  }
+  header h1 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    line-height: 1.1;
+  }
+  header p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    font-weight: 300;
+  }
+  .header-decoration {
+    font-size: 2.5rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar {
+    background: var(--parchment);
+    height: 6px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--sage));
+    transition: width 0.6s ease;
+    width: 0%;
+  }
+
+  /* ===== NAV TABS ===== */
+  .tabs-wrapper {
+    background: var(--cream);
+    border-bottom: 2px solid var(--parchment);
+    position: sticky;
+    top: 6px;
+    z-index: 99;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .tabs {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.9rem 0.5rem;
+    border: none;
+    background: transparent;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--neutral);
+    cursor: pointer;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+  .tab-btn.active {
+    color: var(--warm-brown);
+    border-bottom-color: var(--gold);
+    font-weight: 700;
+  }
+  .tab-btn:hover:not(.active) { color: var(--deep-brown); background: rgba(200,146,42,0.06); }
+  .tab-icon { font-size: 1.1rem; }
+  .tab-check { font-size: 0.8rem; color: var(--correct); }
+
+  /* ===== SECTIONS ===== */
+  main { max-width: 900px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+  .section {
+    display: none;
+    animation: fadeInUp 0.4s ease both;
+  }
+  .section.active { display: block; }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--parchment);
+  }
+  .section-icon-big {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(200,146,42,0.3);
+  }
+  .section-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--deep-brown);
+  }
+  .section-subtitle {
+    font-size: 0.85rem;
+    color: var(--warm-brown);
+    margin-top: 0.2rem;
+  }
+
+  /* ===== PASUK CARD ===== */
+  .pasuk-block {
+    background: linear-gradient(135deg, #FFFDF5 0%, var(--cream) 100%);
+    border: 1px solid var(--parchment);
+    border-right: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .pasuk-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .pasuk-text {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.2rem;
+    line-height: 2;
+    color: var(--deep-brown);
+    direction: rtl;
+  }
+  .pasuk-num {
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-weight: 600;
+    margin-left: 0.3rem;
+  }
+
+  /* ===== INFO BOX ===== */
+  .info-box {
+    background: linear-gradient(135deg, rgba(91,122,90,0.08), rgba(91,122,90,0.04));
+    border: 1px solid rgba(91,122,90,0.2);
+    border-right: 4px solid var(--sage);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .info-box h3 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.1rem;
+    color: var(--sage);
+    margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .info-box p { font-size: 0.95rem; line-height: 1.8; color: var(--deep-brown); }
+
+  /* ===== ACTIVITY CARD ===== */
+  .activity-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 16px rgba(59,32,7,0.07);
+    border: 1px solid rgba(200,146,42,0.15);
+  }
+  .activity-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .activity-num {
+    background: var(--gold);
+    color: white;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ===== QUIZ (MULTIPLE CHOICE) ===== */
+  .quiz-question {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: var(--deep-brown);
+  }
+  .quiz-options { display: grid; gap: 0.6rem; }
+  .quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--parchment);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-size: 0.95rem;
+    background: var(--cream);
+    text-align: right;
+  }
+  .quiz-option:hover:not(.disabled) { border-color: var(--gold); background: rgba(200,146,42,0.05); }
+  .quiz-option.correct { border-color: var(--correct); background: rgba(76,175,80,0.08); }
+  .quiz-option.wrong { border-color: var(--wrong); background: rgba(229,57,53,0.08); }
+  .quiz-option.disabled { cursor: default; }
+  .option-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--parchment);
+    flex-shrink: 0;
+    transition: all 0.25s;
+    background: white;
+  }
+  .quiz-option:hover:not(.disabled) .option-dot { border-color: var(--gold); }
+  .quiz-option.correct .option-dot { border-color: var(--correct); background: var(--correct); }
+  .quiz-option.wrong .option-dot { border-color: var(--wrong); background: var(--wrong); }
+  .quiz-feedback {
+    margin-top: 0.8rem;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: none;
+    animation: fadeInUp 0.3s ease;
+  }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.ok { background: rgba(76,175,80,0.1); color: #2E7D32; }
+  .quiz-feedback.bad { background: rgba(229,57,53,0.1); color: #C62828; }
+
+  /* ===== FILL IN THE BLANK ===== */
+  .fill-sentence {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.15rem;
+    line-height: 2.2;
+    direction: rtl;
+    margin-bottom: 1rem;
+  }
+  .fill-input {
+    display: inline-block;
+    border: none;
+    border-bottom: 2.5px solid var(--gold);
+    background: rgba(200,146,42,0.06);
+    padding: 0.1rem 0.6rem;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.1rem;
+    color: var(--deep-brown);
+    text-align: center;
+    width: 110px;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.25s;
+  }
+  .fill-input:focus { border-bottom-color: var(--warm-brown); background: rgba(200,146,42,0.1); }
+  .fill-input.correct { border-bottom-color: var(--correct); background: rgba(76,175,80,0.1); color: #2E7D32; }
+  .fill-input.wrong { border-bottom-color: var(--wrong); background: rgba(229,57,53,0.1); color: #C62828; }
+  .check-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(135deg, var(--warm-brown), var(--gold));
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 20px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 3px 10px rgba(122,68,25,0.25);
+    margin-top: 0.8rem;
+  }
+  .check-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(122,68,25,0.3); }
+  .check-btn:active { transform: translateY(0); }
+
+  /* ===== MATCHING (DRAG & DROP) ===== */
+  .match-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .match-col-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--warm-brown);
+    margin-bottom: 0.6rem;
+    text-align: center;
+  }
+  .match-item {
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .match-source {
+    background: linear-gradient(135deg, var(--deep-brown), var(--warm-brown));
+    color: white;
+    cursor: grab;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(59,32,7,0.2);
+  }
+  .match-source:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(59,32,7,0.3); }
+  .match-source.dragging { opacity: 0.5; }
+  .match-target {
+    background: var(--parchment);
+    border: 2.5px dashed var(--gold);
+    min-height: 48px;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .match-target.drag-over { background: rgba(200,146,42,0.15); border-color: var(--warm-brown); }
+  .match-target.matched { border-style: solid; border-color: var(--correct); background: rgba(76,175,80,0.08); }
+  .match-target.wrong-match { border-color: var(--wrong); background: rgba(229,57,53,0.08); animation: shake 0.4s ease; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  .match-check-btn {
+    display: block;
+    margin: 1rem auto 0;
+  }
+
+  /* ===== STORY / DISCUSSION ===== */
+  .story-card {
+    background: linear-gradient(135deg, rgba(58,110,138,0.06), rgba(58,110,138,0.02));
+    border: 1px solid rgba(58,110,138,0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .story-emoji { font-size: 2.5rem; margin-bottom: 0.8rem; }
+  .story-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--sky);
+    margin-bottom: 0.8rem;
+  }
+  .story-text {
+    font-size: 0.97rem;
+    line-height: 1.9;
+    color: var(--deep-brown);
+    margin-bottom: 1rem;
+  }
+  .discussion-questions { list-style: none; }
+  .discussion-questions li {
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.5rem;
+    background: white;
+    border-radius: 10px;
+    font-size: 0.93rem;
+    border-right: 3px solid var(--sky);
+    line-height: 1.6;
+  }
+  .discussion-questions li::before {
+    content: '💬 ';
+  }
+
+  /* ===== SCORE / SUMMARY ===== */
+  .score-display {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--deep-brown), var(--warm-brown));
+    border-radius: 16px;
+    color: white;
+    margin-top: 1rem;
+  }
+  .score-num {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--gold-light);
+  }
+  .score-label { font-size: 0.9rem; opacity: 0.8; }
+
+  /* ===== NAV BUTTONS ===== */
+  .nav-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: 25px;
+    border: none;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .nav-btn.primary {
+    background: linear-gradient(135deg, var(--warm-brown), var(--gold));
+    color: white;
+    box-shadow: 0 4px 14px rgba(122,68,25,0.3);
+  }
+  .nav-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(122,68,25,0.35); }
+  .nav-btn.secondary {
+    background: var(--parchment);
+    color: var(--warm-brown);
+    border: 1.5px solid var(--gold);
+  }
+  .nav-btn.secondary:hover { background: rgba(200,146,42,0.1); }
+  .nav-btn:disabled { opacity: 0.4; cursor: default; transform: none !important; }
+
+  /* ===== WORD BANK ===== */
+  .word-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .word-chip {
+    background: linear-gradient(135deg, var(--warm-brown), #995520);
+    color: white;
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Frank Ruhl Libre', serif;
+    box-shadow: 0 2px 6px rgba(122,68,25,0.2);
+  }
+  .word-chip:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(122,68,25,0.3); }
+  .word-chip.used { opacity: 0.3; cursor: default; text-decoration: line-through; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .match-container { grid-template-columns: 1fr; }
+    .nav-btns { flex-direction: column-reverse; }
+    .nav-btn { width: 100%; justify-content: center; }
+  }
+
+  /* ===== CELEBRATION ===== */
+  .celebrate {
+    animation: pop 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  }
+  @keyframes pop {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+  .stars-row { font-size: 1.5rem; letter-spacing: 0.1em; }
+
+  /* ===== SCORE TRACKER ===== */
+  .score-tracker {
+    position: fixed;
+    top: 60px;
+    left: 16px;
+    background: white;
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 98;
+    direction: rtl;
+  }
+  .score-tracker span { color: var(--gold); }
+
+  @media (max-width: 700px) { .score-tracker { display: none; } }
+
+  /* ===== LOGIN OVERLAY ===== */
+  #loginOverlay {
+    position: fixed; inset: 0;
+    background: linear-gradient(135deg, var(--deep-brown) 0%, var(--warm-brown) 60%, #5c3310 100%);
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+  }
+  #loginOverlay::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M40 0L0 40 40 80 80 40z'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .login-card {
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    position: relative;
+    animation: fadeInUp 0.5s ease both;
+  }
+  .login-logo { font-size: 3rem; margin-bottom: 0.5rem; }
+  .login-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--deep-brown);
+    margin-bottom: 0.3rem;
+  }
+  .login-subtitle {
+    font-size: 0.88rem;
+    color: var(--warm-brown);
+    margin-bottom: 2rem;
+  }
+  .login-field {
+    margin-bottom: 1rem;
+    text-align: right;
+  }
+  .login-label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+  .login-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--parchment);
+    border-radius: 12px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+    color: var(--deep-brown);
+    background: white;
+    outline: none;
+    transition: border-color 0.25s;
+    text-align: right;
+    direction: rtl;
+  }
+  .login-input:focus { border-color: var(--gold); }
+  .login-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, var(--warm-brown), var(--gold));
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.25s;
+    box-shadow: 0 4px 16px rgba(122,68,25,0.35);
+    letter-spacing: 0.03em;
+  }
+  .login-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(122,68,25,0.4); }
+  .login-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+  .login-err {
+    color: var(--wrong);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: none;
+  }
+  .login-sending {
+    color: var(--sage);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: none;
+  }
+
+  /* ===== SUBMISSION TOAST ===== */
+  #submitToast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--deep-brown);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 9000;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    white-space: nowrap;
+  }
+  #submitToast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  /* ===== SETUP INSTRUCTIONS MODAL ===== */
+  #setupModal {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 9998;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  #setupModal.open { display: flex; }
+  .setup-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 560px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    direction: rtl;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .setup-card h2 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.4rem;
+    color: var(--deep-brown);
+    margin-bottom: 1rem;
+  }
+  .setup-step {
+    background: var(--cream);
+    border-right: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.7rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .setup-step strong { color: var(--warm-brown); }
+  .setup-code {
+    background: var(--deep-brown);
+    color: #e8d5a3;
+    border-radius: 10px;
+    padding: 1rem;
+    font-family: monospace;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    margin: 0.8rem 0;
+    direction: ltr;
+    text-align: left;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .copy-code-btn {
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: 'Heebo', sans-serif;
+    margin-bottom: 0.5rem;
+  }
+  .close-setup-btn {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.7rem;
+    background: var(--parchment);
+    border: none;
+    border-radius: 10px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--warm-brown);
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN OVERLAY ===== -->
+<div id="loginOverlay">
+  <div class="login-card">
+    <div class="login-logo">📖</div>
+    <div class="login-title">דברים פרק טו</div>
+    <div class="login-subtitle">ממד שבטי ישראל · כיתה ו׳</div>
+
+    <div class="login-field">
+      <label class="login-label" for="studentName">השם שלך</label>
+      <input class="login-input" id="studentName" type="text" placeholder="לדוגמה: יוסי כהן" autocomplete="name" />
+    </div>
+    <div class="login-field">
+      <label class="login-label" for="studentClass">כיתה</label>
+      <input class="login-input" id="studentClass" type="text" placeholder="לדוגמה: ו׳2" />
+    </div>
+
+    <div class="login-err" id="loginErr">⚠️ יש להכניס שם לפני הכניסה</div>
+    <div class="login-sending" id="loginSending">⏳ מתחבר...</div>
+
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">🚀 כניסה ליחידה</button>
+
+    <div style="margin-top:1.2rem;font-size:0.78rem;color:#aaa;cursor:pointer" onclick="document.getElementById('setupModal').classList.add('open')">
+      ⚙️ הגדרות מורה – חיבור ל-Google Sheets
+    </div>
+  </div>
+</div>
+
+<!-- ===== SETUP MODAL ===== -->
+<div id="setupModal">
+  <div class="setup-card">
+    <h2>⚙️ הגדרת חיבור ל-Google Sheets</h2>
+    <p style="font-size:0.88rem;color:#666;margin-bottom:1rem">הגדרה חד-פעמית של 5 דקות. לאחר מכן תראה את כל הנתונים בגיליון שלך.</p>
+
+    <div class="setup-step"><strong>שלב 1:</strong> פתח Google Sheets חדש וקרא לו <strong>"מעקב תלמידים – דברים טו"</strong></div>
+    <div class="setup-step"><strong>שלב 2:</strong> לחץ על <strong>Extensions → Apps Script</strong></div>
+    <div class="setup-step"><strong>שלב 3:</strong> מחק את הקוד הקיים והדבק את הקוד הבא:</div>
+
+    <button class="copy-code-btn" onclick="copyAppsScript()">📋 העתק קוד</button>
+    <pre class="setup-code" id="appsScriptCode">function doPost(e) {
+  var sheet = SpreadsheetApp
+    .getActiveSpreadsheet()
+    .getActiveSheet();
+
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      &apos;תאריך&apos;, &apos;שם תלמיד&apos;, &apos;כיתה&apos;,
+      &apos;ציון כולל&apos;, &apos;מקסימום&apos;, &apos;אחוז&apos;, &apos;זמן בדקות&apos;
+    ]);
+  }
+
+  var raw = e.postData ? e.postData.contents : e.parameter.data;
+  var data = JSON.parse(raw);
+
+  sheet.appendRow([
+    new Date().toLocaleString(&apos;he-IL&apos;),
+    data.name,
+    data.studentClass,
+    data.total,
+    data.maxTotal,
+    data.pct + &apos;%&apos;,
+    data.minutes
+  ]);
+
+  return ContentService
+    .createTextOutput(JSON.stringify({status:&apos;ok&apos;}))
+    .setMimeType(ContentService.MimeType.JSON);
+}</pre>
+
+    <div class="setup-step"><strong>שלב 4:</strong> שמור (Ctrl+S), ואז לחץ <strong>Deploy → New deployment</strong></div>
+    <div class="setup-step"><strong>שלב 5:</strong> בחר <strong>Web app</strong> · Execute as: <strong>Me</strong> · Who has access: <strong>Anyone</strong></div>
+    <div class="setup-step"><strong>שלב 6:</strong> לחץ Deploy, אשר הרשאות, והעתק את ה-<strong>URL</strong> שתקבל</div>
+    <div class="setup-step"><strong>שלב 7:</strong> חזור לקובץ ה-HTML, מצא את השורה <code style="background:#eee;padding:2px 6px;border-radius:4px">SHEETS_URL = ''</code> והדבק את ה-URL</div>
+
+    <button class="close-setup-btn" onclick="document.getElementById('setupModal').classList.remove('open')">✅ סגור</button>
+  </div>
+</div>
+
+<div id="submitToast">✅ הנתונים נשמרו בגיליון!</div>
+
+<header>
+  <div class="header-badge">📚 ממד שבטי ישראל · כיתה ו׳</div>
+  <h1>דְּבָרִים פֶּרֶק טוּ</h1>
+  <p>שְׁמִיטַּת כְּסָפִים · צְדָקָה וְהַלְוָאָה · הַעֲנָקָה לָעֶבֶד</p>
+  <div class="header-decoration">✡</div>
+</header>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="tabs-wrapper">
+  <nav class="tabs">
+    <button class="tab-btn active" onclick="showSection(0)" id="tab0">
+      <span class="tab-icon">🪙</span> שמיטת כספים
+      <span class="tab-check" id="check0" style="display:none">✔</span>
+    </button>
+    <button class="tab-btn" onclick="showSection(1)" id="tab1">
+      <span class="tab-icon">🤝</span> צדקה והלוואה
+      <span class="tab-check" id="check1" style="display:none">✔</span>
+    </button>
+    <button class="tab-btn" onclick="showSection(2)" id="tab2">
+      <span class="tab-icon">🕊️</span> הענקה לעבד
+      <span class="tab-check" id="check2" style="display:none">✔</span>
+    </button>
+    <button class="tab-btn" onclick="showSection(3)" id="tab3">
+      <span class="tab-icon">🏆</span> סיכום
+    </button>
+  </nav>
+</div>
+
+<div class="score-tracker">ניקוד: <span id="scoreDisplay">0</span> / <span id="maxDisplay">0</span></div>
+
+<main>
+
+<!-- =================== SECTION 0: שמיטת כספים =================== -->
+<section class="section active" id="sec0">
+  <div class="section-header">
+    <div class="section-icon-big">🪙</div>
+    <div>
+      <div class="section-title">מצוות שְׁמִיטַּת כְּסָפִים</div>
+      <div class="section-subtitle">פסוקים א–ו · מחיקת חובות בשנת השמיטה</div>
+    </div>
+  </div>
+
+  <div class="pasuk-block">
+    <div class="pasuk-label">הַפְּסוּקִים</div>
+    <div class="pasuk-text">
+      <span class="pasuk-num">(א)</span> מִקֵּץ שֶׁבַע שָׁנִים תַּעֲשֶׂה שְׁמִטָּה:
+      <br>
+      <span class="pasuk-num">(ב)</span> וְזֶה דְּבַר הַשְּׁמִטָּה שָׁמוֹט כָּל בַּעַל מַשֵּׁה יָדוֹ אֲשֶׁר יַשֶּׁה בְּרֵעֵהוּ לֹא יִגֹּשׂ אֶת רֵעֵהוּ וְאֶת אָחִיו כִּי קָרָא שְׁמִטָּה לַה':
+      <br>
+      <span class="pasuk-num">(ג)</span> אֶת הַנָּכְרִי תִּגֹּשׂ וַאֲשֶׁר יִהְיֶה לְךָ אֶת אָחִיךָ תַּשְׁמֵט יָדֶךָ:
+      <br>
+      <span class="pasuk-num">(ד)</span> אֶפֶס כִּי לֹא יִהְיֶה בְּךָ אֶבְיוֹן כִּי בָרֵךְ יְבָרֶכְךָ ה' בָּאָרֶץ אֲשֶׁר ה' אֱלֹהֶיךָ נֹתֵן לְךָ נַחֲלָה לְרִשְׁתָּהּ:
+      <br>
+      <span class="pasuk-num">(ה–ו)</span> רַק אִם שָׁמוֹעַ תִּשְׁמַע בְּקוֹל ה' אֱלֹהֶיךָ... וְהִלְוִיתָ גּוֹיִם רַבִּים וְאַתָּה לֹא תִלְוֶה:
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h3>💡 מה זה שמיטת כספים?</h3>
+    <p>
+      כל שבע שנים, בשנה הנקראת <strong>שנת השמיטה</strong>, אסור לגבות חובות מאחינו הישראלים.
+      מי שהלווה כסף לשכנו – פשוט מוחל על החוב! זו מצווה שמלמדת אותנו שהכסף הוא מתנה מהקב"ה,
+      ואנחנו צריכים לשחרר אחרים מהלחץ הכלכלי.
+    </p>
+  </div>
+
+  <!-- שאלון אמריקאי -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">1</span> שאלות הבנה</div>
+
+    <div id="q0_0">
+      <div class="quiz-question">כמה שנים עוברות בין שמיטה לשמיטה?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(0,0,this,false)"><span class="option-dot"></span> 3 שנים</div>
+        <div class="quiz-option" onclick="checkQuiz(0,0,this,false)"><span class="option-dot"></span> 5 שנים</div>
+        <div class="quiz-option" onclick="checkQuiz(0,0,this,true)"><span class="option-dot"></span> 7 שנים</div>
+        <div class="quiz-option" onclick="checkQuiz(0,0,this,false)"><span class="option-dot"></span> 10 שנים</div>
+      </div>
+      <div class="quiz-feedback" id="fb0_0"></div>
+    </div>
+
+    <hr style="margin:1rem 0; border:none; border-top:1px solid var(--parchment)">
+
+    <div id="q0_1">
+      <div class="quiz-question">מה קורה לחוב של ישראלי שלווה כסף בשנת השמיטה?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(0,1,this,false)"><span class="option-dot"></span> צריך להחזיר כפול</div>
+        <div class="quiz-option" onclick="checkQuiz(0,1,this,true)"><span class="option-dot"></span> החוב נמחק ואסור לגבות אותו</div>
+        <div class="quiz-option" onclick="checkQuiz(0,1,this,false)"><span class="option-dot"></span> הריבית מתבטלת בלבד</div>
+        <div class="quiz-option" onclick="checkQuiz(0,1,this,false)"><span class="option-dot"></span> דוחים את ההחזר לשנה הבאה</div>
+      </div>
+      <div class="quiz-feedback" id="fb0_1"></div>
+    </div>
+
+    <hr style="margin:1rem 0; border:none; border-top:1px solid var(--parchment)">
+
+    <div id="q0_2">
+      <div class="quiz-question">על מי חלה מצוות שמיטת כספים?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(0,2,this,false)"><span class="option-dot"></span> על גויים ועל ישראלים</div>
+        <div class="quiz-option" onclick="checkQuiz(0,2,this,true)"><span class="option-dot"></span> רק על ישראלים (לא על גויים)</div>
+        <div class="quiz-option" onclick="checkQuiz(0,2,this,false)"><span class="option-dot"></span> רק על עניים</div>
+        <div class="quiz-option" onclick="checkQuiz(0,2,this,false)"><span class="option-dot"></span> על כל מי שגר בארץ ישראל</div>
+      </div>
+      <div class="quiz-feedback" id="fb0_2"></div>
+    </div>
+  </div>
+
+  <!-- השלמת חסר -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">2</span> השלמת חסר</div>
+    <p style="font-size:0.85rem; color:var(--warm-brown); margin-bottom:0.8rem">1️⃣ לחץ על ריבוע ← 2️⃣ לחץ על המילה הנכונה</p>
+    <div class="word-bank">
+      <span class="word-chip" onclick="copyWord(this)">שָׁמוֹט</span>
+      <span class="word-chip" onclick="copyWord(this)">שֶׁבַע</span>
+      <span class="word-chip" onclick="copyWord(this)">יִגֹּשׂ</span>
+      <span class="word-chip" onclick="copyWord(this)">אֶבְיוֹן</span>
+      <span class="word-chip" onclick="copyWord(this)">נָכְרִי</span>
+    </div>
+    <div class="fill-sentence">
+      מִקֵּץ <input class="fill-input" onclick="selectInput(this)" id="fi0_0" data-answer="שֶׁבַע" placeholder="____"> שָׁנִים תַּעֲשֶׂה שְׁמִטָּה
+    </div>
+    <div class="fill-sentence">
+      <input class="fill-input" onclick="selectInput(this)" id="fi0_1" data-answer="שָׁמוֹט" placeholder="____"> כָּל בַּעַל מַשֵּׁה יָדוֹ
+    </div>
+    <div class="fill-sentence">
+      לֹא <input class="fill-input" onclick="selectInput(this)" id="fi0_2" data-answer="יִגֹּשׂ" placeholder="____"> אֶת רֵעֵהוּ
+    </div>
+    <div class="fill-sentence">
+      לֹא יִהְיֶה בְּךָ <input class="fill-input" onclick="selectInput(this)" id="fi0_3" data-answer="אֶבְיוֹן" placeholder="____">
+    </div>
+    <button class="check-btn" onclick="checkFill('sec0')">✅ בדוק תשובות</button>
+    <div class="quiz-feedback" id="fillFb0"></div>
+  </div>
+
+  <!-- סיפור לדיון -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">3</span> סיפור לדיון</div>
+    <div class="story-card">
+      <div class="story-emoji">💰</div>
+      <div class="story-title">חוב שנמחק</div>
+      <div class="story-text">
+        דניאל הלווה לחברו יוסי 200 ש"ח לפני שנה. יוסי התכוון להחזיר, אבל החיים היו קשים ולא הצליח.
+        השנה הגיעה שנת השמיטה. דניאל רוצה לגבות את החוב לפני שהשנה תסתיים.
+      </div>
+      <ul class="discussion-questions">
+        <li>האם מותר לדניאל לגבות עכשיו? מה אומרת התורה?</li>
+        <li>איך דניאל אמור להרגיש לגבי מחיקת החוב?</li>
+        <li>מה המסר של מצווה זו לגבי הכסף שלנו?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="nav-btn secondary" disabled>→ הקודם</button>
+    <button class="nav-btn primary" onclick="showSection(1)">הבא: צדקה והלוואה ←</button>
+  </div>
+</section>
+
+<!-- =================== SECTION 1: צדקה והלוואה =================== -->
+<section class="section" id="sec1">
+  <div class="section-header">
+    <div class="section-icon-big">🤝</div>
+    <div>
+      <div class="section-title">מצוות צְדָקָה וְהַלְוָאָה</div>
+      <div class="section-subtitle">פסוקים ז–יא · חובת הנתינה לעני</div>
+    </div>
+  </div>
+
+  <div class="pasuk-block">
+    <div class="pasuk-label">הַפְּסוּקִים</div>
+    <div class="pasuk-text">
+      <span class="pasuk-num">(ז)</span> כִּי יִהְיֶה בְךָ אֶבְיוֹן מֵאַחַד אַחֶיךָ... לֹא תְאַמֵּץ אֶת לְבָבְךָ וְלֹא תִקְפֹּץ אֶת יָדְךָ מֵאָחִיךָ הָאֶבְיוֹן:
+      <br>
+      <span class="pasuk-num">(ח)</span> כִּי פָתֹחַ תִּפְתַּח אֶת יָדְךָ לוֹ וְהַעֲבֵט תַּעֲבִיטֶנּוּ דֵּי מַחְסֹרוֹ אֲשֶׁר יֶחְסַר לוֹ:
+      <br>
+      <span class="pasuk-num">(ט)</span> הִשָּׁמֶר לְךָ פֶּן יִהְיֶה דָבָר עִם לְבָבְךָ בְלִיַּעַל לֵאמֹר קָרְבָה שְׁנַת הַשֶּׁבַע שְׁנַת הַשְּׁמִטָּה... וְרָעָה עֵינְךָ בְּאָחִיךָ הָאֶבְיוֹן:
+      <br>
+      <span class="pasuk-num">(י)</span> נָתוֹן תִּתֵּן לוֹ וְלֹא יֵרַע לְבָבְךָ בְּתִתְּךָ לוֹ כִּי בִּגְלַל הַדָּבָר הַזֶּה יְבָרֶכְךָ ה' אֱלֹהֶיךָ:
+      <br>
+      <span class="pasuk-num">(יא)</span> כִּי לֹא יֶחְדַּל אֶבְיוֹן מִקֶּרֶב הָאָרֶץ עַל כֵּן אָנֹכִי מְצַוְּךָ לֵאמֹר פָּתֹחַ תִּפְתַּח אֶת יָדְךָ לְאָחִיךָ לַעֲנִיֶּךָ וּלְאֶבְיֹנְךָ בְּאַרְצֶךָ:
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h3>💡 לב רחב ויד פתוחה</h3>
+    <p>
+      התורה מצווה לתת לעני <strong>לא רק מה שנוח לנו</strong> – אלא "דֵּי מַחְסֹרוֹ", כלומר מה שהוא ממש צריך.
+      גם הרגש חשוב: "לֹא יֵרַע לְבָבְךָ" – לתת בשמחה ולא בכעס.
+      ומעניין – הפסוק גם מזהיר מפני מחשבה חשבונאית: אל תחשוב שלא כדאי לתת כי בקרוב תמחק את החוב ממילא!
+    </p>
+  </div>
+
+  <!-- שאלות אמריקאי -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">1</span> שאלות הבנה</div>
+
+    <div id="q1_0">
+      <div class="quiz-question">מה המשמעות של "לֹא תִקְפֹּץ אֶת יָדְךָ"?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(1,0,this,false)"><span class="option-dot"></span> לא תלחץ ידיים</div>
+        <div class="quiz-option" onclick="checkQuiz(1,0,this,true)"><span class="option-dot"></span> לא תסרב לתת לעני</div>
+        <div class="quiz-option" onclick="checkQuiz(1,0,this,false)"><span class="option-dot"></span> לא תיקח כסף מהעני</div>
+        <div class="quiz-option" onclick="checkQuiz(1,0,this,false)"><span class="option-dot"></span> לא תחזיק כסף כלל</div>
+      </div>
+      <div class="quiz-feedback" id="fb1_0"></div>
+    </div>
+
+    <hr style="margin:1rem 0; border:none; border-top:1px solid var(--parchment)">
+
+    <div id="q1_1">
+      <div class="quiz-question">מה פירוש "דֵּי מַחְסֹרוֹ"?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(1,1,this,false)"><span class="option-dot"></span> מה שנוח לנו לתת</div>
+        <div class="quiz-option" onclick="checkQuiz(1,1,this,true)"><span class="option-dot"></span> מה שהעני ממש צריך</div>
+        <div class="quiz-option" onclick="checkQuiz(1,1,this,false)"><span class="option-dot"></span> מחצית ממה שחסר לו</div>
+        <div class="quiz-option" onclick="checkQuiz(1,1,this,false)"><span class="option-dot"></span> לחם ומים בלבד</div>
+      </div>
+      <div class="quiz-feedback" id="fb1_1"></div>
+    </div>
+
+    <hr style="margin:1rem 0; border:none; border-top:1px solid var(--parchment)">
+
+    <div id="q1_2">
+      <div class="quiz-question">מה אזהרת פסוק ט' – "הִשָּׁמֶר לְךָ"?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(1,2,this,false)"><span class="option-dot"></span> אל תלווה כסף לאף אחד</div>
+        <div class="quiz-option" onclick="checkQuiz(1,2,this,false)"><span class="option-dot"></span> אל תסתכל על עניים</div>
+        <div class="quiz-option" onclick="checkQuiz(1,2,this,true)"><span class="option-dot"></span> אל תחשוב "בקרוב שמיטה, ממה שווה לי לתת"</div>
+        <div class="quiz-option" onclick="checkQuiz(1,2,this,false)"><span class="option-dot"></span> אל תלווה סמוך לחג</div>
+      </div>
+      <div class="quiz-feedback" id="fb1_2"></div>
+    </div>
+  </div>
+
+  <!-- גרירה: התאמה -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">2</span> התאמה – גרור לצד הנכון</div>
+    <p style="font-size:0.85rem;color:var(--warm-brown);margin-bottom:1rem">גרור כל ביטוי לפירושו הנכון 👇</p>
+    <div class="match-container">
+      <div>
+        <div class="match-col-label">ביטוי מהפסוק</div>
+        <div class="match-source" draggable="true" id="ms0" ondragstart="drag(event)" data-key="a">לֹא תְאַמֵּץ אֶת לְבָבְךָ</div>
+        <div class="match-source" draggable="true" id="ms1" ondragstart="drag(event)" data-key="b">פָּתֹחַ תִּפְתַּח אֶת יָדְךָ</div>
+        <div class="match-source" draggable="true" id="ms2" ondragstart="drag(event)" data-key="c">לֹא יֵרַע לְבָבְךָ</div>
+        <div class="match-source" draggable="true" id="ms3" ondragstart="drag(event)" data-key="d">נָתוֹן תִּתֵּן לוֹ</div>
+      </div>
+      <div>
+        <div class="match-col-label">הפירוש</div>
+        <div class="match-target" id="mt_c" data-key="c" ondragover="allowDrop(event)" ondrop="dropMatch(event)">תתן בשמחה ולא בכעס</div>
+        <div class="match-target" id="mt_a" data-key="a" ondragover="allowDrop(event)" ondrop="dropMatch(event)">אל תקשיח את ליבך</div>
+        <div class="match-target" id="mt_d" data-key="d" ondragover="allowDrop(event)" ondrop="dropMatch(event)">חייב לתת – זו מצווה!</div>
+        <div class="match-target" id="mt_b" data-key="b" ondragover="allowDrop(event)" ondrop="dropMatch(event)">תן כמה שצריך, בנדיבות</div>
+      </div>
+    </div>
+    <div class="quiz-feedback" id="matchFb1"></div>
+  </div>
+
+  <!-- סיפור לדיון -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">3</span> סיפור לדיון</div>
+    <div class="story-card">
+      <div class="story-emoji">🧒</div>
+      <div class="story-title">רון והקופסה</div>
+      <div class="story-text">
+        רון רואה את שכנו העני עומד ליד הכניסה לסופר ומבקש עזרה. לרון יש 50 ש"ח בכיס – כסף שחסך לקניית מדבקות.
+        הוא חושב: "כמה אני כבר חייב לתת? אולי שקל אחד מספיק? הוא גם לא ממש אחי..."
+      </div>
+      <ul class="discussion-questions">
+        <li>מה אומרת התורה על המחשבה של רון?</li>
+        <li>מה פירוש "פָּתֹחַ תִּפְתַּח" בסיטואציה הזאת?</li>
+        <li>האם כדאי לתת גם כשקשה לנו? למה?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="nav-btn secondary" onclick="showSection(0)">→ שמיטת כספים</button>
+    <button class="nav-btn primary" onclick="showSection(2)">הבא: הענקה לעבד ←</button>
+  </div>
+</section>
+
+<!-- =================== SECTION 2: הענקה לעבד =================== -->
+<section class="section" id="sec2">
+  <div class="section-header">
+    <div class="section-icon-big">🕊️</div>
+    <div>
+      <div class="section-title">מצוות הַעֲנָקָה לָעֶבֶד</div>
+      <div class="section-subtitle">פסוקים יב–יח · שחרור עבד עברי</div>
+    </div>
+  </div>
+
+  <div class="pasuk-block">
+    <div class="pasuk-label">הַפְּסוּקִים</div>
+    <div class="pasuk-text">
+      <span class="pasuk-num">(יב)</span> כִּי יִמָּכֵר לְךָ אָחִיךָ הָעִבְרִי אוֹ הָעִבְרִיָּה וַעֲבָדְךָ שֵׁשׁ שָׁנִים וּבַשָּׁנָה הַשְּׁבִיעִת תְּשַׁלְּחֶנּוּ חָפְשִׁי מֵעִמָּךְ:
+      <br>
+      <span class="pasuk-num">(יג)</span> וְכִי תְשַׁלְּחֶנּוּ חָפְשִׁי מֵעִמָּךְ לֹא תְשַׁלְּחֶנּוּ רֵיקָם:
+      <br>
+      <span class="pasuk-num">(יד)</span> הַעֲנֵיק תַּעֲנִיק לוֹ מִצֹּאנְךָ וּמִגָּרְנְךָ וּמִיִּקְבֶךָ אֲשֶׁר בֵּרַכְךָ ה' אֱלֹהֶיךָ תִּתֶּן לוֹ:
+      <br>
+      <span class="pasuk-num">(טו)</span> וְזָכַרְתָּ כִּי עֶבֶד הָיִיתָ בְּאֶרֶץ מִצְרַיִם וַיִּפְדְּךָ ה' אֱלֹהֶיךָ עַל כֵּן אָנֹכִי מְצַוְּךָ אֶת הַדָּבָר הַזֶּה הַיּוֹם:
+      <br>
+      <span class="pasuk-num">(טז–יז)</span> וְהָיָה כִּי יֹאמַר אֵלֶיךָ לֹא אֵצֵא מֵעִמָּךְ... וְלָקַחְתָּ אֶת הַמַּרְצֵעַ וְנָתַתָּה בְאָזְנוֹ וּבַדֶּלֶת וְהָיָה לְךָ עֶבֶד עוֹלָם:
+      <br>
+      <span class="pasuk-num">(יח)</span> לֹא יִקְשֶׁה בְעֵינֶיךָ בְּשַׁלְּחֲךָ אֹתוֹ חָפְשִׁי מֵעִמָּךְ:
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h3>💡 מה זו הענקה לעבד?</h3>
+    <p>
+      עבד עברי עובד 6 שנים ואז יוצא לחופשי. אבל התורה לא מסתפקת בשחרור בלבד –
+      מצווה לתת לו מתנות יציאה: צאן, דגן, ויין. הסיבה? "זְכֹר כִּי עֶבֶד הָיִיתָ" –
+      כל יהודי חייב לזכור את העבדות במצרים ולנהוג בחסד עם מי שהיה תחת ידו.
+    </p>
+  </div>
+
+  <!-- שאלות אמריקאי -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">1</span> שאלות הבנה</div>
+
+    <div id="q2_0">
+      <div class="quiz-question">כמה שנים עובד עבד עברי לפני שהוא יוצא לחופשי?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(2,0,this,false)"><span class="option-dot"></span> 3 שנים</div>
+        <div class="quiz-option" onclick="checkQuiz(2,0,this,true)"><span class="option-dot"></span> 6 שנים</div>
+        <div class="quiz-option" onclick="checkQuiz(2,0,this,false)"><span class="option-dot"></span> 7 שנים</div>
+        <div class="quiz-option" onclick="checkQuiz(2,0,this,false)"><span class="option-dot"></span> 10 שנים</div>
+      </div>
+      <div class="quiz-feedback" id="fb2_0"></div>
+    </div>
+
+    <hr style="margin:1rem 0; border:none; border-top:1px solid var(--parchment)">
+
+    <div id="q2_1">
+      <div class="quiz-question">מה צריך לתת לעבד כשמשחררים אותו?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(2,1,this,false)"><span class="option-dot"></span> שכר עבור עבודתו בלבד</div>
+        <div class="quiz-option" onclick="checkQuiz(2,1,this,false)"><span class="option-dot"></span> כסף ולבוש</div>
+        <div class="quiz-option" onclick="checkQuiz(2,1,this,true)"><span class="option-dot"></span> צאן, דגן ויין – מתנות הענקה</div>
+        <div class="quiz-option" onclick="checkQuiz(2,1,this,false)"><span class="option-dot"></span> אפשר לשחרר ללא מתנות</div>
+      </div>
+      <div class="quiz-feedback" id="fb2_1"></div>
+    </div>
+
+    <hr style="margin:1rem 0; border:none; border-top:1px solid var(--parchment)">
+
+    <div id="q2_2">
+      <div class="quiz-question">מה קורה אם העבד אומר "לא אצא, אני רוצה להישאר"?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(2,2,this,false)"><span class="option-dot"></span> מוציאים אותו בכוח</div>
+        <div class="quiz-option" onclick="checkQuiz(2,2,this,true)"><span class="option-dot"></span> רוצעים את אוזנו בדלת ועובד לעולם</div>
+        <div class="quiz-option" onclick="checkQuiz(2,2,this,false)"><span class="option-dot"></span> הוא חופשי אוטומטית</div>
+        <div class="quiz-option" onclick="checkQuiz(2,2,this,false)"><span class="option-dot"></span> מחכים עוד 6 שנים</div>
+      </div>
+      <div class="quiz-feedback" id="fb2_2"></div>
+    </div>
+  </div>
+
+  <!-- השלמת חסר לפסוק טו -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">2</span> פסוק חשוב – השלם</div>
+    <p style="font-size:0.85rem; color:var(--warm-brown); margin-bottom:0.8rem">1️⃣ לחץ על ריבוע ← 2️⃣ לחץ על המילה הנכונה</p>
+    <div class="word-bank">
+      <span class="word-chip" onclick="copyWord(this)">עֶבֶד</span>
+      <span class="word-chip" onclick="copyWord(this)">מִצְרַיִם</span>
+      <span class="word-chip" onclick="copyWord(this)">וְזָכַרְתָּ</span>
+      <span class="word-chip" onclick="copyWord(this)">וַיִּפְדְּךָ</span>
+      <span class="word-chip" onclick="copyWord(this)">אָנֹכִי</span>
+    </div>
+    <div class="fill-sentence">
+      <input class="fill-input" onclick="selectInput(this)" id="fi2_0" data-answer="וְזָכַרְתָּ" placeholder="____"> כִּי <input class="fill-input" onclick="selectInput(this)" id="fi2_1" data-answer="עֶבֶד" placeholder="____"> הָיִיתָ בְּאֶרֶץ <input class="fill-input" onclick="selectInput(this)" id="fi2_2" data-answer="מִצְרַיִם" placeholder="____">
+    </div>
+    <div class="fill-sentence">
+      <input class="fill-input" onclick="selectInput(this)" id="fi2_3" data-answer="וַיִּפְדְּךָ" placeholder="____"> ה' אֱלֹהֶיךָ
+    </div>
+    <button class="check-btn" onclick="checkFill('sec2')">✅ בדוק תשובות</button>
+    <div class="quiz-feedback" id="fillFb2"></div>
+  </div>
+
+  <!-- גרירה: התאמה -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">3</span> התאמה – גרור</div>
+    <p style="font-size:0.85rem;color:var(--warm-brown);margin-bottom:1rem">גרור כל מושג לתיאורו</p>
+    <div class="match-container">
+      <div>
+        <div class="match-col-label">מושג</div>
+        <div class="match-source" draggable="true" id="ms2_0" ondragstart="drag(event)" data-key="e">הַעֲנָקָה</div>
+        <div class="match-source" draggable="true" id="ms2_1" ondragstart="drag(event)" data-key="f">מַרְצֵעַ</div>
+        <div class="match-source" draggable="true" id="ms2_2" ondragstart="drag(event)" data-key="g">עֶבֶד עוֹלָם</div>
+        <div class="match-source" draggable="true" id="ms2_3" ondragstart="drag(event)" data-key="h">חָפְשִׁי</div>
+      </div>
+      <div>
+        <div class="match-col-label">הסבר</div>
+        <div class="match-target" id="mt2_f" data-key="f" ondragover="allowDrop(event)" ondrop="dropMatch(event)">כלי חד לרציעת האוזן</div>
+        <div class="match-target" id="mt2_e" data-key="e" ondragover="allowDrop(event)" ondrop="dropMatch(event)">מתנות היציאה לעבד</div>
+        <div class="match-target" id="mt2_h" data-key="h" ondragover="allowDrop(event)" ondrop="dropMatch(event)">שחרור מלא מהעבדות</div>
+        <div class="match-target" id="mt2_g" data-key="g" ondragover="allowDrop(event)" ondrop="dropMatch(event)">עבד שבחר להישאר לנצח</div>
+      </div>
+    </div>
+    <div class="quiz-feedback" id="matchFb2"></div>
+  </div>
+
+  <!-- סיפור לדיון -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">4</span> סיפור לדיון</div>
+    <div class="story-card">
+      <div class="story-emoji">🕊️</div>
+      <div class="story-title">שחרור עם לב שלם</div>
+      <div class="story-text">
+        אחרי שש שנות עבודה, מגיע היום שבו שמעון יכול לשחרר את עבדו לוי. שמעון חושב:
+        "הוא עבד בשבילי שנים – זה מספיק. למה שאתן לו גם מתנות?"
+      </div>
+      <ul class="discussion-questions">
+        <li>מה עונה לו התורה בפסוק יג?</li>
+        <li>למה התורה מזכירה את יציאת מצרים דווקא כאן?</li>
+        <li>מה זה אומר עלינו – שגם אנחנו היינו עבדים?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="nav-btn secondary" onclick="showSection(1)">→ צדקה והלוואה</button>
+    <button class="nav-btn primary" onclick="showSection(3)">לסיכום ←</button>
+  </div>
+</section>
+
+<!-- =================== SECTION 3: סיכום =================== -->
+<section class="section" id="sec3">
+  <div class="section-header">
+    <div class="section-icon-big">🏆</div>
+    <div>
+      <div class="section-title">סיכום ומשוב</div>
+      <div class="section-subtitle">כל הכבוד על השלמת היחידה!</div>
+    </div>
+  </div>
+
+  <div class="activity-card" id="finalScore">
+    <div class="score-display" id="scorePanel">
+      <div class="stars-row" id="starsRow">⭐⭐⭐</div>
+      <div class="score-num" id="finalScoreNum">0</div>
+      <div class="score-label">נקודות</div>
+    </div>
+  </div>
+
+  <!-- חזרה -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">📖</span> סיכום הנושאים</div>
+    <div style="display:grid;gap:1rem;">
+      <div class="info-box" style="border-right-color:var(--gold)">
+        <h3 style="color:var(--gold)">🪙 שמיטת כספים (פס' א–ו)</h3>
+        <p>כל 7 שנים חובות של ישראלים נמחקים. לא גובים – מוחלים! הכסף הוא מתנה מה'.</p>
+      </div>
+      <div class="info-box" style="border-right-color:var(--sage)">
+        <h3 style="color:var(--sage)">🤝 צדקה והלוואה (פס' ז–יא)</h3>
+        <p>נותנים לעני בשמחה ובנדיבות – "דֵּי מַחְסֹרוֹ". לא מחפשים תירוצים לא לתת.</p>
+      </div>
+      <div class="info-box" style="border-right-color:var(--sky)">
+        <h3 style="color:var(--sky)">🕊️ הענקה לעבד (פס' יב–יח)</h3>
+        <p>עבד עברי יוצא אחרי 6 שנים עם מתנות. זכרון יציאת מצרים = חובת חסד.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- שאלת בונוס -->
+  <div class="activity-card">
+    <div class="activity-title"><span class="activity-num">⭐</span> שאלת בונוס</div>
+    <div id="q3_bonus">
+      <div class="quiz-question">מה המסר המשותף לשלוש המצוות שלמדנו בפרק טו?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(3,0,this,false)"><span class="option-dot"></span> לשמור על הכסף שלנו</div>
+        <div class="quiz-option" onclick="checkQuiz(3,0,this,true)"><span class="option-dot"></span> לדאוג לחלשים ולזכור שהכל מה'</div>
+        <div class="quiz-option" onclick="checkQuiz(3,0,this,false)"><span class="option-dot"></span> לציית לממשלה</div>
+        <div class="quiz-option" onclick="checkQuiz(3,0,this,false)"><span class="option-dot"></span> לעבוד קשה ולהצליח</div>
+      </div>
+      <div class="quiz-feedback" id="fb3_0"></div>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="nav-btn secondary" onclick="showSection(2)">→ הענקה לעבד</button>
+    <button class="nav-btn primary" onclick="resetAll()">🔄 התחל מחדש</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+// ===== GOOGLE SHEETS URL =====
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzZZagZH8ijlhSYKrJH_xAxijG4BVc2xGCbmXBq-ydEnIcOyO_BlkFKg99EeG8es7Vk0Q/exec';
+
+// ===== LOGIN STATE =====
+let studentName = '';
+let studentClass = '';
+let startTime = null;
+
+function doLogin() {
+  const nameEl = document.getElementById('studentName');
+  const classEl = document.getElementById('studentClass');
+  const err = document.getElementById('loginErr');
+  const sending = document.getElementById('loginSending');
+
+  if (!nameEl.value.trim()) {
+    err.style.display = 'block';
+    nameEl.focus();
+    return;
+  }
+  err.style.display = 'none';
+  studentName = nameEl.value.trim();
+  studentClass = classEl.value.trim() || '–';
+  startTime = Date.now();
+
+  document.getElementById('loginOverlay').style.opacity = '0';
+  document.getElementById('loginOverlay').style.transition = 'opacity 0.4s';
+  setTimeout(() => {
+    document.getElementById('loginOverlay').style.display = 'none';
+  }, 400);
+}
+
+// Enter key support
+document.addEventListener('DOMContentLoaded', () => {
+  ['studentName','studentClass'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') doLogin();
+    });
+  });
+});
+
+// ===== SUBMIT TO SHEETS =====
+function submitToSheets() {
+  if (!SHEETS_URL || !studentName) return;
+  const total = scores.reduce((a,b) => a+b, 0);
+  const maxTotal = maxScores.reduce((a,b) => a+b, 0) || 1;
+  const minutes = startTime ? Math.round((Date.now() - startTime) / 60000) : 0;
+  const payload = {
+    name: studentName,
+    studentClass: studentClass,
+    score0: scores[0],
+    score1: scores[1],
+    score2: scores[2],
+    score3: scores[3],
+    total: total,
+    maxTotal: maxTotal,
+    pct: Math.round(total / maxTotal * 100),
+    minutes: minutes
+  };
+  fetch(SHEETS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(() => showToast('✅ הנתונים נשמרו בגיליון!')).catch(() => {});
+}
+
+function showToast(msg) {
+  const t = document.getElementById('submitToast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+function copyAppsScript() {
+  const code = document.getElementById('appsScriptCode').textContent;
+  navigator.clipboard.writeText(code).then(() => showToast('📋 הקוד הועתק!'));
+}
+
+// ===== STATE =====
+let currentSection = 0;
+let scores = [0, 0, 0, 0];
+let maxScores = [0, 0, 0, 0];
+let sectionDone = [false, false, false, false];
+let dragKey = null;
+
+// ===== TAB NAVIGATION =====
+function showSection(n) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec' + n).classList.add('active');
+  document.getElementById('tab' + n).classList.add('active');
+  currentSection = n;
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (n === 3) updateFinalScore();
+}
+
+function updateProgress() {
+  const done = sectionDone.filter(Boolean).length;
+  document.getElementById('progressFill').style.width = (done / 3 * 100) + '%';
+}
+
+// ===== QUIZ =====
+const quizAnswered = {};
+function checkQuiz(sec, qIdx, el, isCorrect) {
+  const key = sec + '_' + qIdx;
+  if (quizAnswered[key]) return;
+  quizAnswered[key] = true;
+
+  maxScores[sec] += 1;
+  if (isCorrect) {
+    scores[sec] += 1;
+    el.classList.add('correct');
+    showFeedback('fb' + sec + '_' + qIdx, '✅ כל הכבוד! תשובה נכונה!', true);
+  } else {
+    el.classList.add('wrong');
+    showFeedback('fb' + sec + '_' + qIdx, '❌ לא נכון. נסה לחזור על הפסוקים.', false);
+  }
+  el.closest('.quiz-options').querySelectorAll('.quiz-option').forEach(o => o.classList.add('disabled'));
+  updateScoreDisplay();
+  checkSectionDone(sec);
+}
+
+function showFeedback(id, msg, ok) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'quiz-feedback show ' + (ok ? 'ok' : 'bad');
+}
+
+// ===== FILL IN THE BLANK =====
+function checkFill(secId) {
+  const sec = secId === 'sec0' ? 0 : 2;
+  const inputs = document.querySelectorAll('#' + secId + ' .fill-input');
+  let correct = 0;
+  inputs.forEach(inp => {
+    if (inp.dataset.checked) return;
+    const val = inp.value.trim();
+    const ans = inp.dataset.answer.trim();
+    // flexible compare (ignoring nikud for partial match)
+    const strip = s => s.replace(/[\u05B0-\u05C7]/g, '');
+    const isOk = val === ans || strip(val) === strip(ans);
+    inp.dataset.checked = '1';
+    inp.classList.add(isOk ? 'correct' : 'wrong');
+    maxScores[sec] += 1;
+    if (isOk) { correct++; scores[sec] += 1; }
+  });
+  const total = inputs.length;
+  const fbEl = document.getElementById('fillFb' + sec);
+  if (correct === total) {
+    showFeedback('fillFb' + sec, '✅ מצוין! כל התשובות נכונות!', true);
+  } else {
+    showFeedback('fillFb' + sec, `❌ ${correct} מתוך ${total} נכונות. נסה שוב!`, false);
+  }
+  updateScoreDisplay();
+  checkSectionDone(sec);
+}
+
+// Track which input is selected
+let selectedInput = null;
+
+function selectInput(inp) {
+  // Remove highlight from all inputs
+  document.querySelectorAll('.fill-input').forEach(i => i.style.outline = '');
+  selectedInput = inp;
+  inp.style.outline = '3px solid var(--gold)';
+  inp.style.background = 'rgba(200,146,42,0.15)';
+}
+
+function copyWord(el) {
+  if (el.classList.contains('used')) return;
+  const word = el.textContent.trim();
+
+  // If an input is selected, fill it
+  if (selectedInput && !selectedInput.dataset.checked) {
+    selectedInput.value = word;
+    selectedInput.style.outline = '';
+    selectedInput.style.background = '';
+    el.classList.add('used');
+    selectedInput = null;
+    return;
+  }
+
+  // Fallback: fill first empty input in same section
+  const active = document.activeElement;
+  if (active && active.classList.contains('fill-input') && !active.dataset.checked) {
+    active.value = word;
+    el.classList.add('used');
+    active.blur();
+    return;
+  }
+
+  // Show hint to select an input first
+  el.style.animation = 'none';
+  el.textContent = '👆 קודם לחץ על ריבוע';
+  setTimeout(() => {
+    el.textContent = word;
+    el.style.animation = '';
+  }, 1200);
+}
+
+// ===== DRAG & DROP =====
+function drag(e) {
+  dragKey = e.target.dataset.key;
+  e.target.classList.add('dragging');
+  setTimeout(() => e.target.classList.remove('dragging'), 200);
+}
+function allowDrop(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add('drag-over');
+}
+function dropMatch(e) {
+  e.preventDefault();
+  const target = e.currentTarget;
+  target.classList.remove('drag-over');
+  if (!dragKey) return;
+
+  const targetKey = target.dataset.key;
+  const secMatch = target.id.startsWith('mt2') ? 2 : 1;
+
+  target.querySelectorAll('.match-source').forEach(el => el.remove());
+  const src = document.querySelector(`.match-source[data-key="${dragKey}"]`);
+  if (!src) return;
+
+  const clone = src.cloneNode(true);
+  clone.draggable = false;
+  clone.style.cursor = 'default';
+
+  if (dragKey === targetKey) {
+    target.classList.add('matched');
+    target.classList.remove('wrong-match');
+    clone.style.background = 'linear-gradient(135deg, var(--sage), var(--sage-light))';
+    scores[secMatch] += 1;
+    src.style.opacity = '0.3';
+    src.draggable = false;
+  } else {
+    target.classList.add('wrong-match');
+    setTimeout(() => {
+      target.classList.remove('wrong-match');
+      target.innerHTML = target.dataset.origText || target.textContent;
+    }, 600);
+    clone = null;
+  }
+  maxScores[secMatch] += 1;
+  if (clone) target.appendChild(clone);
+  updateScoreDisplay();
+  checkSectionDone(secMatch);
+  dragKey = null;
+}
+
+// ===== SCORE =====
+function updateScoreDisplay() {
+  const total = scores.reduce((a, b) => a + b, 0);
+  const max = maxScores.reduce((a, b) => a + b, 0);
+  document.getElementById('scoreDisplay').textContent = total;
+  document.getElementById('maxDisplay').textContent = max;
+}
+
+function checkSectionDone(sec) {
+  // Mark section as done if at least 2 questions answered
+  const answered = Object.keys(quizAnswered).filter(k => k.startsWith(sec + '_')).length;
+  if (answered >= 2 && !sectionDone[sec]) {
+    sectionDone[sec] = true;
+    document.getElementById('check' + sec).style.display = 'inline';
+    updateProgress();
+  }
+}
+
+function updateFinalScore() {
+  const total = scores.reduce((a, b) => a + b, 0);
+  const max = maxScores.reduce((a, b) => a + b, 0) || 1;
+  const pct = total / max;
+  document.getElementById('finalScoreNum').textContent = total + (max ? ' / ' + max : '');
+  let stars = '⭐';
+  if (pct >= 0.5) stars = '⭐⭐';
+  if (pct >= 0.8) stars = '⭐⭐⭐';
+  document.getElementById('starsRow').textContent = stars;
+  document.getElementById('finalScore').classList.add('celebrate');
+  submitToSheets();
+}
+
+function resetAll() {
+  location.reload();
+}
+
+// ===== INIT =====
+// save original target text for drag reset
+document.querySelectorAll('.match-target').forEach(el => {
+  el.dataset.origText = el.textContent;
+});
+
+// Touch fallback for drag on mobile
+let touchDragEl = null;
+document.querySelectorAll('.match-source').forEach(el => {
+  el.addEventListener('touchstart', e => { touchDragEl = el; }, { passive: true });
+});
+document.querySelectorAll('.match-target').forEach(el => {
+  el.addEventListener('touchend', e => {
+    if (!touchDragEl) return;
+    dragKey = touchDragEl.dataset.key;
+    // simulate drop
+    const fake = { preventDefault: () => {}, currentTarget: el };
+    dropMatch(fake);
+    touchDragEl = null;
+  }, { passive: false });
+});
+</script>
+</body>
+</html>
