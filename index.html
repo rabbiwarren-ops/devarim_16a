@@ -839,7 +839,7 @@
     <div class="setup-step"><strong>שלב 4:</strong> שמור (Ctrl+S), ואז לחץ <strong>Deploy → New deployment</strong></div>
     <div class="setup-step"><strong>שלב 5:</strong> בחר <strong>Web app</strong> · Execute as: <strong>Me</strong> · Who has access: <strong>Anyone</strong></div>
     <div class="setup-step"><strong>שלב 6:</strong> לחץ Deploy, אשר הרשאות, והעתק את ה-<strong>URL</strong> שתקבל</div>
-    <div class="setup-step"><strong>שלב 7:</strong> חזור לקובץ ה-HTML, מצא את השורה <code style="background:#eee;padding:2px 6px;border-radius:4px">const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyY7UzN4l5om4712f4hZHVj3aS8UmMfPjH0zEkhzQ1clFGWgTpoPKXqz8uAKOYUpgiM5A/exec';</code> והדבק את ה-URL</div>
+    <div class="setup-step"><strong>שלב 7:</strong> חזור לקובץ ה-HTML, מצא את השורה <code style="background:#eee;padding:2px 6px;border-radius:4px">const const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzZZagZH8ijlhSYKrJH_xAxijG4BVc2xGCbmXBq-ydEnIcOyO_BlkFKg99EeG8es7Vk0Q/exec'; = 'https://script.google.com/macros/s/AKfycbyY7UzN4l5om4712f4hZHVj3aS8UmMfPjH0zEkhzQ1clFGWgTpoPKXqz8uAKOYUpgiM5A/exec';</code> והדבק את ה-URL</div>
 
     <button class="close-setup-btn" onclick="document.getElementById('setupModal').classList.remove('open')">✅ סגור</button>
   </div>
@@ -1338,7 +1338,7 @@
 <script>
 // ===== GOOGLE SHEETS URL =====
 // הדבק כאן את ה-URL של Apps Script לאחר הפריסה:
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyY7UzN4l5om4712f4hZHVj3aS8UmMfPjH0zEkhzQ1clFGWgTpoPKXqz8uAKOYUpgiM5A/exec'; 
+const const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzZZagZH8ijlhSYKrJH_xAxijG4BVc2xGCbmXBq-ydEnIcOyO_BlkFKg99EeG8es7Vk0Q/exec'; = 'https://script.google.com/macros/s/AKfycbyY7UzN4l5om4712f4hZHVj3aS8UmMfPjH0zEkhzQ1clFGWgTpoPKXqz8uAKOYUpgiM5A/exec'; 
 // ===== LOGIN STATE =====
 let studentName = '';
 let studentClass = '';
@@ -1378,7 +1378,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ===== SUBMIT TO SHEETS =====
 function submitToSheets() {
-  if (!SHEETS_URL || !studentName) return;
+  if (!const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzZZagZH8ijlhSYKrJH_xAxijG4BVc2xGCbmXBq-ydEnIcOyO_BlkFKg99EeG8es7Vk0Q/exec'; || !studentName) return;
   const total = scores.reduce((a,b) => a+b, 0);
   const maxTotal = maxScores.reduce((a,b) => a+b, 0) || 1;
   const minutes = startTime ? Math.round((Date.now() - startTime) / 60000) : 0;
@@ -1394,7 +1394,7 @@ function submitToSheets() {
     pct: Math.round(total / maxTotal * 100),
     minutes: minutes
   };
-  fetch(SHEETS_URL, {
+  fetch(const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzZZagZH8ijlhSYKrJH_xAxijG4BVc2xGCbmXBq-ydEnIcOyO_BlkFKg99EeG8es7Vk0Q/exec';, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
